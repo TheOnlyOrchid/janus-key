@@ -79,6 +79,8 @@ VOID CountFunc(const ADDRINT funcAddr, const ADDRINT calledFromAddr) {
         FunCallInstanceInfo callInfo;
         callInfo.timestamp = static_cast<UINT32>(std::time(nullptr));
         callInfo.calledFromAddr = calledFromAddr;
+
+        // placeholder
         callInfo.returnType = "unknown";
         callInfo.returnValue = {};
 
