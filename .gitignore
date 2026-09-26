@@ -1,6 +1,12 @@
 build/
+build-*/
 cmake-build-*/
+trace-*/
 .vs/
 .idea/
 
 third_party/pin/
+ghidra/JanusKey/build/
+ghidra/JanusKey/dist/
+ghidra/JanusKey/.gradle/
+__pycache__/
