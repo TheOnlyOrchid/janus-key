@@ -62,4 +62,4 @@ std::wstring ToWide(const std::string &value);
 std::string FormatBytes(std::uintmax_t bytes);
 std::string FormatTime(std::int64_t seconds);
 
-}`
+}
