@@ -10,3 +10,5 @@ ghidra/JanusKey/build/
 ghidra/JanusKey/dist/
 ghidra/JanusKey/.gradle/
 __pycache__/
+
+experiments/
