@@ -3,27 +3,21 @@
 Janus key is an Intel Pin based profiler that produces extremely high-fidelity traces.
 It's default compact binary output records process trees, module identities, instruction
 encodings, executed instructions, repeated memory accesses, register states, calls, returns,
-branches, syscalls, context transition, memory lifecycles and thread lifetimes. A CSV backend 
-remains available for diagnostics - though note that it is not the intended output format, 
-merely left in because I saw no reason to remove something I already had for a legacy version.
-
-The actual profiler itself is independent of consumers - but it is designed with consumers in mind.
+branches, syscalls, context transition, memory lifecycles and thread lifetimes.
 
 The accompanying Ghidra extension turns the traces into value hovers, writer history, observed
 function args / return values, timeline stepping, execution hotspots and comparisons across runs.
 
-## Ghidra analysis
+## Ghidra plugin
 
 ```powershell
 python ghidra/build.py --ghidra E:/coding/ghidra_11.4.2_PUBLIC
 ```
 
-Install the generated extension ZIP from `ghidra/JanusKey/dist` through Ghidra's **File -> Install
-Extensions**, restart, and enable **JanusKeyPlugin** in the plugin config page. Import a
-run with **File -> Import Janus Key Run**, select the corresponding module, and enjoy.
-The extension checks PE identity before rebasing observations and instruction 
-bytes before navigation. It saves reusable disk indexes (this may eat a bit of storage)
-and keeps each run's state separate.
+After building, you can install the ZIP by going through the following process: 
+Ghidra's **File -> Install Extensions**, restart, and enable **JanusKeyPlugin** in the plugin config page. 
+Import a run with **File -> Import Janus Key Run**, select the corresponding module, and enjoy. 
+It saves reusable indexes to disk (this may eat a bit of storage).
 
 ## Build and test
 
@@ -69,10 +63,13 @@ executable.
 `-registers 0` records neither register input values nor before/after register write values.
 `call_stack_bytes` bounds the raw caller-stack snapshot stored with every call instance.
 `format` defaults to `binary`, `csv` is also available. which writes `trace.jkt`
-`-compression xpress` is the default compression codec, `none` is also available.;
+`-compression xpress` is the default compression codec, `none` is also available.
 Use `-follow_children 0` to not inject the profiler into children.
 
 ## DISCLAIMERS
+
+The CSV backend remains - though note that it is not the intended output format, it is merely 
+left in because I saw no reason to remove something I already had for a legacy version.
 
 In the current state - this project isn't exactly user friendly or practical. Per-instruction orchestration involves a significant
 performance overhead - even running simple applications, such as notepad, can suffer. GUI applications do suffer more
